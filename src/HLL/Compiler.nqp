@@ -433,7 +433,6 @@ class HLL::Compiler does HLL::Backend::Default {
                 }
             }
             nqp::exit(1) if $err;
-            #nqp::exit(0) if nqp::defined(%adverbs<bytecode>);
             try {
                 nqp::push(@codes, $in-handle.slurp());
                 unless $filename eq '-' {
