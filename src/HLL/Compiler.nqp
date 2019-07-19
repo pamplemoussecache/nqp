@@ -385,12 +385,13 @@ class HLL::Compiler does HLL::Backend::Default {
             self.syscall($command);
             $command := "chmod 755 " ~ %adverbs<compile>;
             self.syscall($command);
+            $command := "rm " ~ %adverbs<output>;
+            self.syscall($command);
         }
         $result;
     }
 
     method syscall($command) {
-        note($command);
         my $is-windows := nqp::backendconfig()<osname> eq 'MSWin32';
         my class Queue is repr('ConcBlockingQueue') { }
         my $queue := nqp::create(Queue);
